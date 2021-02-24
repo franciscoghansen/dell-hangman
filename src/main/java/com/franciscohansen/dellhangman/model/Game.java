@@ -2,10 +2,8 @@ package com.franciscohansen.dellhangman.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,5 +21,8 @@ public class Game extends AbstractModel {
     private Player player;
     @Column
     private double score = 6;
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "game")
+    private List<GameLetters> usedLetters;
 
 }

@@ -1,10 +1,13 @@
 package com.franciscohansen.dellhangman;
 
 import com.franciscohansen.dellhangman.dto.HangmanXmlDTO;
+import com.franciscohansen.dellhangman.model.Word;
+import com.franciscohansen.dellhangman.persistence.services.WordService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
@@ -30,7 +33,15 @@ class DellHangmanApplicationTests {
             e.printStackTrace();
             Assertions.fail(e.getMessage());
         }
-
     }
+
+    @Test
+
+    void testWordIsRandom(@Autowired WordService service) {
+        Word word1 = service.getRandomWord();
+        Word word2 = service.getRandomWord();
+        Assertions.assertNotEquals(word1.getWord(), word2.getWord());
+    }
+
 
 }

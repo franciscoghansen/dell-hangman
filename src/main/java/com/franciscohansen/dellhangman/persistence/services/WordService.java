@@ -52,7 +52,7 @@ public class WordService extends AbstractService<Word, WordRepository> {
     }
 
     @Override
-    WordRepository repository() {
+    protected WordRepository repository() {
         return this.repository;
     }
 

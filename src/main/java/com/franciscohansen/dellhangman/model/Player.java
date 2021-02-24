@@ -14,5 +14,7 @@ import javax.persistence.Entity;
 public class Player extends AbstractModel {
 
     @Column(unique = true)
+    private String uid;
+    @Column
     private String name;
 }

@@ -22,17 +22,22 @@ public class WordController extends AbstractController<Word, WordRepository, Wor
     }
 
     @Override
-    WordRepository repository() {
+    protected WordRepository repository() {
         return repository;
     }
 
     @Override
-    WordService service() {
+    protected WordService service() {
         return service;
     }
 
+    @Override
+    protected Word newRecord() {
+        return Word.builder().build();
+    }
+
     @GetMapping("/random-word")
-    public Word getRandomWord(){
+    public Word getRandomWord() {
         return this.service.getRandomWord();
     }
 }
