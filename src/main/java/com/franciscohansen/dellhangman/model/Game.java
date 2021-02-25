@@ -22,7 +22,8 @@ public class Game extends AbstractModel {
     @Column
     private double score = 6;
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "game")
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn( name = "game_id", referencedColumnName = "id")
     private List<GameLetters> usedLetters;
 
 }
