@@ -15,6 +15,7 @@ import org.springframework.util.FileCopyUtils;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
@@ -58,9 +59,9 @@ public class WordService extends AbstractService<Word, WordRepository> {
 
     public void populate() {
         try {
-            File file = resource.getFile();
+            InputStream is = resource.getInputStream();
             Serializer serializer = new Persister();
-            HangmanXmlDTO dto = serializer.read(HangmanXmlDTO.class, file);
+            HangmanXmlDTO dto = serializer.read(HangmanXmlDTO.class, is);
 
             for (String sWord : dto.getWords()) {
                 if (!repository.existsByWordEquals(sWord.toUpperCase(Locale.ROOT))) {
